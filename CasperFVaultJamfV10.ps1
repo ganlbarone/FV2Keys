@@ -1,5 +1,6 @@
 Function CasperFVault($id){
     try{
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
         $user = "ENTER USER NAME HERE"
         $pass= "ENTER PASSWORD HERE"
         $serverAddress = "https://somedomain.com:8443" #must be in format https://servername:port
