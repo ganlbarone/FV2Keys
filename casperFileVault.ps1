@@ -1,5 +1,6 @@
 ﻿function CasperFVault($id){
     try{
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
         #initial auth \ only purpose here is to get cookies, we dont pass auth header info anywhere else, we simply capture cookie.
         $user = "ENTER USER NAME HERE"
         $pass= "ENTER PASSWORD HERE"
