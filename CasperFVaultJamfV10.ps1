@@ -3,10 +3,13 @@ Function CasperFVault($id){
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
         $user = "ENTER USER NAME HERE"
         $pass= "ENTER PASSWORD HERE"
-        $serverAddress = "https://somedomain.com:8443" #must be in format https://servername:port
+        #Must be in format https://servername:port
+        #If using a Jamf-hosted cloud instance for your JSS, port 8443 does not work, but port 443 does.
+        #So you may need to use either 443 or 8443 
+        $serverAddress = "https://somedomain.com:8443" 
 
         $data = @{"username"="$user";"password"="$pass";"resetUsername"=""}
-        $auth = Invoke-WebRequest -SessionVariable Sessions -UseBasicParsing -Uri "$serverAddress/?failover'" -Body $data -Method "Post" -ErrorAction Stop
+        $auth = Invoke-WebRequest -SessionVariable Sessions -UseBasicParsing -Uri "$serverAddress/?failover" -Body $data -Method "Post" -ErrorAction Stop
 
         #grab session key for future AJAX call 
         $data = @{"id"="$id";"o"="r";"v"="management"}
